@@ -44,8 +44,8 @@ if N<0 %
     return;
 end
 
-if pos_size*(1+N/100)>neg_size % 2020/12/23
-    N = N - 100; % 宁少勿多
+if pos_size*(1+N/100)>neg_size 
+    N = N - 100; 
     if N==0
         balancedData = data;
         return;
@@ -76,7 +76,7 @@ dataX = dataPos(:,1:end-1);
 
 % Distance between instances
 distM = dist(dataX');
-distM = distM - eye(size(distM,1),size(distM,1)); % 对角线元素全部变为负数，后续好删除
+distM = distM - eye(size(distM,1),size(distM,1)); 
 
 % Index of neighbors of T instance
 % idx = randperm(size(data,1),T); % Disturb the order of minority samples
