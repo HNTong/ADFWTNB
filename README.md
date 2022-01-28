@@ -2,7 +2,7 @@
 
 Benchmark Datasets and Source Code of the Paper "ADFWTNB: Adaptive Double Feature Weighted Transfer Naive Bayes for Cross-Project Defect Prediction".
 
-## Experimental Environment in the Paper
+## Experimental Environment
 (1) CPU：AMD Ryzen 5 4600U 2.10GHz  RAM 16GB  
 (2) MATLAB R2018b
 
