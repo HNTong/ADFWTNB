@@ -25,8 +25,13 @@ for d = 1:numel(dataNames{1})
     loader.setFile(file1); 
     insts = loader.getDataSet; 
     insts.setClassIndex(insts.numAttributes()-1); 
-    [sources,featureNames,targetNDX,stringVals,relationName1] = weka2matlab(insts,[]); 
-    sources = [sources(:, 1:end-1), double(sources(:, end)>0)]; 
+    [sources,featureNames,targetNDX,stringVals,relationName1] = weka2matlab(insts,[]); % NOTE: For 'weka2matlab', the first label value is transformed into 0, i.e., {false,true} or {N, Y}-->{0,1}, {true,false} or {Y, N}-->{0,1}
+    if strcmp(featureNamesSrc{end}, 'Y')||strcmpi(featureNamesSrc{end}, 'Yes')||strcmpi(featureNamesSrc{end}, 'true')||strcmpi(featureNamesSrc{end}, 'T')
+        sources(sources(:,end)==0, end) = -1;
+        sources(sources(:,end)==1, end) = 0;
+        sources(sources(:,end)==-1, end) = 1;
+    end
+	sources = [sources(:, 1:end-1), double(sources(:, end)>0)]; 
     
     % Load target data 
     file2 = java.io.File([dataPath,dataNames{2}{d},'.arff']);  
@@ -35,6 +40,11 @@ for d = 1:numel(dataNames{1})
     insts = loader.getDataSet; 
     insts.setClassIndex(insts.numAttributes()-1);
     [targets,featureNames,targetNDX,stringVals,relationName2] = weka2matlab(insts,[]); 
+	if strcmp(featureNamesSrc{end}, 'Y')||strcmpi(featureNamesSrc{end}, 'Yes')||strcmpi(featureNamesSrc{end}, 'true')||strcmpi(featureNamesSrc{end}, 'T')
+        targets(targets(:,end)==0, end) = -1;
+        targets(targets(:,end)==1, end) = 0;
+        targets(targets(:,end)==-1, end) = 1;
+    end
     targets = [targets(:, 1:end-1), double(targets(:, end)>0)];
     
     
@@ -74,7 +84,8 @@ for d = 1:numel(dataNames{1})
     % targetsCopy = targets;
     sourcesCopy = sources;
     
-    paramaters.layers = 6; paramaters.noises = 0.5; paramaters.lambda = 0.01; % Just for DMDAJFR
+	% Just for DMDAJFR
+    paramaters.layers = 6; paramaters.noises = 0.5; paramaters.lambda = 0.01; 
     if strcmp(dataNames{1}{d}, 'ant-1.3')
         paramaters.layers = 4; paramaters.noises = 0.5; paramaters.lambda = 0.01;   
     end
