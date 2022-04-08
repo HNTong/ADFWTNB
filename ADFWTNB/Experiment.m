@@ -26,7 +26,7 @@ for d = 1:numel(dataNames{1})
     insts = loader.getDataSet; 
     insts.setClassIndex(insts.numAttributes()-1); 
     [sources,featureNames,targetNDX,stringVals,relationName1] = weka2matlab(insts,[]); % NOTE: For 'weka2matlab', the first label value is transformed into 0, i.e., {false,true} or {N, Y}-->{0,1}, {true,false} or {Y, N}-->{0,1}
-    if strcmp(featureNamesSrc{end}, 'Y')||strcmpi(featureNamesSrc{end}, 'Yes')||strcmpi(featureNamesSrc{end}, 'true')||strcmpi(featureNamesSrc{end}, 'T')
+    if strcmp(featureNames{end}, 'Y')||strcmpi(featureNames{end}, 'Yes')||strcmpi(featureNames{end}, 'true')||strcmpi(featureNames{end}, 'T')
         sources(sources(:,end)==0, end) = -1;
         sources(sources(:,end)==1, end) = 0;
         sources(sources(:,end)==-1, end) = 1;
@@ -40,7 +40,7 @@ for d = 1:numel(dataNames{1})
     insts = loader.getDataSet; 
     insts.setClassIndex(insts.numAttributes()-1);
     [targets,featureNames,targetNDX,stringVals,relationName2] = weka2matlab(insts,[]); 
-	if strcmp(featureNamesSrc{end}, 'Y')||strcmpi(featureNamesSrc{end}, 'Yes')||strcmpi(featureNamesSrc{end}, 'true')||strcmpi(featureNamesSrc{end}, 'T')
+	if strcmp(featureNames{end}, 'Y')||strcmpi(featureNames{end}, 'Yes')||strcmpi(featureNames{end}, 'true')||strcmpi(featureNames{end}, 'T')
         targets(targets(:,end)==0, end) = -1;
         targets(targets(:,end)==1, end) = 0;
         targets(targets(:,end)==-1, end) = 1;
