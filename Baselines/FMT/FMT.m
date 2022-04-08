@@ -148,7 +148,7 @@ probPos = classProbsPred(:,2); % the probability of being positive
 try
     [MCC,F1,AUC] = Performance(target(:,end), probPos); % Call Performance()
 catch
-    AUC=nan;MCC=nan;法=nan;
+    AUC=nan;MCC=nan;F1=nan;
 end
 
 end
