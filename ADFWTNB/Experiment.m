@@ -130,7 +130,7 @@ for d = 1:numel(dataNames{1})
         rand('seed',0);
         source = sources;
         target = targets;
-        [MCC_adfw(i,:), F1_adfw(i,1),AUC_adfw(i,:)] = ADFWTNB(source, target, idxLOC);
+        [MCC_adfw(i,:), F1_adfw(i,:),AUC_adfw(i,:)] = ADFWTNB(source, target, idxLOC);
         
         
         %% ManualDown
@@ -138,7 +138,7 @@ for d = 1:numel(dataNames{1})
         rand('seed',0);
         source = sources;
         target = targets;
-        [MCC_md(i,:),F1_md(i,1),AUC_md(i,:)] = ManualDown(target, idxLOC);
+        [MCC_md(i,:),F1_md(i,:),AUC_md(i,:)] = ManualDown(target, idxLOC);
         
 
         
@@ -147,14 +147,14 @@ for d = 1:numel(dataNames{1})
         rand('seed',0);
         source = sources;
         target = targets;
-        [MCC_fmt(i,:), F1_fmt(i,1), AUC_fmt(i,:)] = FMT(source, target);
+        [MCC_fmt(i,:), F1_fmt(i,:), AUC_fmt(i,:)] = FMT(source, target);
         
         %% DMDAJFR
         disp('DMDAJFR...')
         rand('seed',0);
         source = sources;
         target = targets; 
-        [MCC_dmda(i,:), F1_dmda(i,1), AUC_dmda(i,:)] = DMDAJFR(source, target, paramaters);
+        [MCC_dmda(i,:), F1_dmda(i,:), AUC_dmda(i,:)] = DMDAJFR(source, target, paramaters);
     end % End of runs
 end % End of datsets
 a = 1;
